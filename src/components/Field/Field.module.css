@@ -1,0 +1,23 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.field__label {
+  font-size: var(--f-size-small);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.field_error {
+  margin-top: 6px;
+  color: var(--c-text-danger);
+  font-size: var(--f-size-xsmall);
+}
+
+.required {
+  color: var(--c-text-danger);
+}

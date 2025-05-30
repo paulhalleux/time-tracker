@@ -1,0 +1,29 @@
+.page {
+  position: relative;
+  height: 100%;
+}
+
+.page__container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 16px;
+}
+
+.header__title {
+  font-size: var(--f-size-xlarge);
+  font-weight: 600;
+
+  color: var(--c-text-base);
+}
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

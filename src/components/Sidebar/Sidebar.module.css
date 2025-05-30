@@ -1,0 +1,44 @@
+.sidebar {
+  width: 300px;
+  height: 100vh;
+
+  padding: 16px;
+
+  background: var(--c-background-secondary);
+  border-right: 1px solid var(--c-border-base);
+}
+
+.sidebar__title {
+  font-size: var(--f-size-xlarge);
+  font-weight: 600;
+
+  margin-bottom: 16px;
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar__nav__link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  height: 32px;
+  padding: 0 12px;
+
+  color: var(--c-text-base);
+  text-decoration: none;
+
+  border-radius: var(--b-radius-base);
+
+  &:hover {
+    background: oklab(from var(--c-background-base) calc(l + 0.08) a b);
+  }
+}
+
+.sidebar__nav__link--active {
+  background: oklab(from var(--c-background-base) calc(l + 0.1) a b);
+}

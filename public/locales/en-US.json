@@ -1,0 +1,32 @@
+{
+  "title": "TimeTracker",
+  "cancel": "Cancel",
+  "save": "Save",
+  "page": {
+    "dashboard": {
+      "title": "Dashboard",
+      "noCurrentTracking": "No current tracking session.",
+      "newTracking": "Start New Tracking"
+    },
+    "categories": {
+      "title": "Categories",
+      "description": "Manage your categories for time tracking.",
+      "create": {
+        "label": "New Category",
+        "description": "Create a new category to organize your time entries."
+      },
+      "edit": {
+        "label": "Edit Category",
+        "description": "Modify the details of the selected category."
+      }
+    }
+  },
+  "validation": {
+    "category": {
+      "name": {
+        "required": "Category name is required.",
+        "unique": "Category name is already in use."
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+.button {
+  --button-bg: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  user-select: none;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--b-radius-base);
+  background: var(--button-bg);
+  color: var(--c-text-base);
+  cursor: pointer;
+
+  &:hover {
+    background: oklab(from var(--button-bg) calc(l + 0.03) a b);
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.button--secondary {
+  --button-bg: var(--c-background-secondary);
+  border: 1px solid oklab(from var(--button-bg) calc(l + 0.08) a b);
+}
+
+.button--primary {
+  --button-bg: var(--c-background-primary);
+  color: var(--c-text-base);
+  border: 1px solid oklab(from var(--button-bg) calc(l + 0.08) a b);
+}
+
+.button--danger {
+  --button-bg: var(--c-background-danger);
+  color: var(--c-text-base);
+  border: 1px solid oklab(from var(--button-bg) calc(l + 0.08) a b);
+}
+
+.button--sm {
+  height: 24px;
+  padding-inline: 8px;
+  font-size: var(--f-size-small);
+}
+
+.button--md {
+  height: 28px;
+  padding-inline: 8px;
+  font-size: var(--f-size-small);
+}
+
+.button--lg {
+  height: 32px;
+  padding-inline: 10px;
+  font-size: var(--f-size-large);
+}
+
+.icon {
+  aspect-ratio: 1;
+  padding: 0 !important;
+}

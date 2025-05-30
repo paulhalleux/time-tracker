@@ -1,0 +1,7 @@
+.kbd {
+  background: var(--c-background-tertiary);
+  font-size: var(--f-size-xsmall);
+  border-radius: var(--b-radius-base);
+  border: 1px solid var(--c-border-base);
+  padding: 2px 4px;
+}

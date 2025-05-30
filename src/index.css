@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import "normalize-reset.css";
+
+* {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
+}
+
+:root {
+  --f-size-xsmall: 10px;
+  --f-size-small: 12px;
+  --f-size-base: 14px;
+  --f-size-large: 16px;
+  --f-size-xlarge: 18px;
+
+  --f-family-base: 'Inter', sans-serif;
+
+  --c-text-base: #f5f5f5;
+  --c-text-secondary: #b0b0b0;
+  --c-text-danger: #ff4d4d;
+
+  --c-background-primary: #3271f1;
+  --c-background-base: #1c1c20;
+  --c-background-secondary: #232327;
+  --c-background-tertiary: #343439;
+  --c-background-danger: #952424;
+
+  --c-border-primary: #3271f1;
+  --c-border-base: #3a3a3c;
+  --c-border-secondary: #4a4a4c;
+
+  --b-radius-base: 4px;
+  --b-radius-lg: 16px;
+}
+
+html, body, #root {
+  min-height: 100vh;
+}

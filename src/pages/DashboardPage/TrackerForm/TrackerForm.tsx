@@ -10,6 +10,7 @@ import type { Tracker } from "../../../types/tracker.ts";
 import styles from "./TrackerForm.module.css";
 
 export const TRACKER_FORM_ID = "tracker-form";
+export const UNCATEGORIZED_TRACKER_ID = "uncategorized";
 
 const TrackerSchema = (
   t: TFunction,
@@ -67,7 +68,12 @@ export function TrackerForm({
       id={TRACKER_FORM_ID}
       onSubmit={form.handleSubmit(onSubmit)}
     >
-      <Field control={form.control} name="name" label="Name" required>
+      <Field
+        control={form.control}
+        name="name"
+        label={t("page.trackers.form.name")}
+        required
+      >
         <Input
           type="text"
           disabled={disabled}
@@ -76,7 +82,11 @@ export function TrackerForm({
           {...form.register("name")}
         />
       </Field>
-      <Field control={form.control} name="description" label="Description">
+      <Field
+        control={form.control}
+        name="description"
+        label={t("page.trackers.form.description")}
+      >
         <Input
           type="text"
           disabled={disabled}
@@ -84,15 +94,21 @@ export function TrackerForm({
           {...form.register("description")}
         />
       </Field>
-      <Field control={form.control} name="categoryId" label="Description">
+      <Field
+        control={form.control}
+        name="categoryId"
+        label={t("page.trackers.form.category")}
+      >
         <select
           id="categoryId"
           disabled={disabled}
           {...form.register("categoryId", {
-            value: defaultValues?.categoryId || "uncategorized",
+            value: defaultValues?.categoryId || UNCATEGORIZED_TRACKER_ID,
           })}
         >
-          <option value="uncategorized">Uncategorized</option>
+          <option value={UNCATEGORIZED_TRACKER_ID}>
+            {t("page.trackers.uncategorized")}
+          </option>
           {categories?.map((category) => (
             <option key={category.id} value={category.id}>
               {category.name}

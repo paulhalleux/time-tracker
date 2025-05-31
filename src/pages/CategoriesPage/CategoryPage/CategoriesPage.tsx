@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-table";
 import { AnimatePresence } from "motion/react";
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { Route, Routes, useLocation, useNavigate } from "react-router";
 
 import { confirm, Table } from "../../../components";
@@ -19,6 +20,8 @@ import styles from "./CategoriesPage.module.css";
 const columnHelper = createColumnHelper<TrackerCategory>();
 
 export function CategoriesPage() {
+  const { t } = useTranslation();
+
   const query = useQueryCategories();
   const deleteCategory = useDeleteCategory();
 
@@ -54,31 +57,31 @@ export function CategoriesPage() {
   const table = useReactTable<TrackerCategory>({
     columns: [
       columnHelper.accessor("name", {
-        header: "Name",
+        header: t("page.categories.columns.name"),
         cell: (info) => info.getValue(),
       }),
       columnHelper.accessor("description", {
-        header: "Description",
+        header: t("page.categories.columns.description"),
         cell: (info) =>
           info.getValue() || (
             <span className={styles.noDescription}>
-              No description provided
+              {t("page.categories.noDescription")}
             </span>
           ),
       }),
       columnHelper.display({
         id: "actions",
-        header: "Actions",
+        header: t("page.categories.columns.actions"),
         meta: {
           align: "right",
         },
         cell: (info) => (
           <Table.Actions>
             <Table.Action onClick={() => onEdit(info.row.original.id)}>
-              Edit
+              {t("edit")}
             </Table.Action>
             <Table.Action onClick={() => onDelete(info.row.original.id)}>
-              Delete
+              {t("delete")}
             </Table.Action>
           </Table.Actions>
         ),

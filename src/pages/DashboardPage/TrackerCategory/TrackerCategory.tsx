@@ -1,5 +1,6 @@
 import { CaretDownIcon, CaretRightIcon } from "@phosphor-icons/react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
 import { Button } from "../../../components";
@@ -16,6 +17,7 @@ type TrackerCategoryProps = {
 };
 
 export function TrackerCategory({ category, trackers }: TrackerCategoryProps) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const [expanded, setExpanded] = useState(trackers.length > 0);
@@ -39,9 +41,9 @@ export function TrackerCategory({ category, trackers }: TrackerCategoryProps) {
         <div className={styles.category__content}>
           {!trackers.length ? (
             <div className={styles.category__empty}>
-              No trackers in this category
+              {t("page.categories.empty.noTrackers")}
               <Button variant="primary" onClick={onAddTracker}>
-                Add Tracker
+                {t("page.categories.addTracker")}
               </Button>
             </div>
           ) : (

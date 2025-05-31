@@ -2,10 +2,15 @@
   "title": "TimeTracker",
   "cancel": "Cancel",
   "save": "Save",
+  "delete": "Delete",
+  "edit": "Edit",
+  "paused": "Paused",
   "page": {
     "trackers": {
       "title": "Tracker",
       "description": "Manage your time tracking sessions.",
+      "startTracking": "Start Tracking",
+      "uncategorized": "Uncategorized",
       "create": {
         "label": "New Tracker",
         "description": "Create a new tracker to start tracking your time."
@@ -13,6 +18,20 @@
       "edit": {
         "label": "Edit Tracker",
         "description": "Modify the details of the selected tracker."
+      },
+      "confirmation": {
+        "delete": {
+          "title": "Delete Tracker",
+          "message": "Are you sure you want to delete this tracker? This action cannot be undone."
+        }
+      },
+      "form": {
+        "name": "Name",
+        "description": "Description",
+        "category": "Category"
+      },
+      "empty": {
+        "noTrackerData": "No tracker data available yet. Start tracking to see your time."
       }
     },
     "dashboard": {
@@ -23,6 +42,13 @@
     "categories": {
       "title": "Categories",
       "description": "Manage your categories for time tracking.",
+      "addTracker": "Add Tracker",
+      "noDescription": "No description available.",
+      "columns": {
+        "name": "Name",
+        "description": "Description",
+        "actions": "Actions"
+      },
       "create": {
         "label": "New Category",
         "description": "Create a new category to organize your time entries."
@@ -30,6 +56,9 @@
       "edit": {
         "label": "Edit Category",
         "description": "Modify the details of the selected category."
+      },
+      "empty": {
+        "noTrackers": "No trackers available. Create a tracker to start tracking your time."
       }
     }
   },

@@ -8,6 +8,7 @@ import {
 import { clsx } from "clsx";
 import * as React from "react";
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
 import { Button, confirm } from "../../../components";
@@ -37,6 +38,7 @@ type TrackerProps = {
 };
 
 export function Tracker({ tracker, expanded, onToggle }: TrackerProps) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const timeTracker = useTimeTracker();
   const isActive = useTimeTrackerStore(
@@ -70,10 +72,10 @@ export function Tracker({ tracker, expanded, onToggle }: TrackerProps) {
 
       try {
         await confirm({
-          title: "Delete Tracker",
-          description: "Are you sure you want to delete this tracker?",
-          confirmButtonText: "Delete",
-          cancelButtonText: "Cancel",
+          title: t("page.trackers.confirmation.delete.title"),
+          description: t("page.trackers.confirmation.delete.message"),
+          confirmButtonText: t("delete"),
+          cancelButtonText: t("cancel"),
           confirmButtonVariant: "danger",
         });
         if (isActive) {
@@ -85,7 +87,7 @@ export function Tracker({ tracker, expanded, onToggle }: TrackerProps) {
         /* empty */
       }
     },
-    [deleteTracker, isActive, timeTracker, tracker],
+    [deleteTracker, isActive, t, timeTracker, tracker],
   );
 
   const onEdit = useCallback(
@@ -143,9 +145,9 @@ export function Tracker({ tracker, expanded, onToggle }: TrackerProps) {
           <div className={styles.tracker__content}>
             {instances.length === 0 ? (
               <div className={styles.tracker__empty}>
-                No tracker data available yet. Start tracking to see your time.
+                {t("page.trackers.empty.noTrackerData")}
                 <Button variant="primary" onClick={onStart}>
-                  Start Tracking
+                  {t("page.trackers.startTracking")}
                 </Button>
               </div>
             ) : (
@@ -173,10 +175,10 @@ export function Tracker({ tracker, expanded, onToggle }: TrackerProps) {
             )}
             <footer className={styles.tracker__footer}>
               <Button size="sm" variant="secondary" onClick={onEdit}>
-                Edit
+                {t("edit")}
               </Button>
               <Button size="sm" variant="danger" onClick={onDelete}>
-                Delete
+                {t("delete")}
               </Button>
             </footer>
           </div>

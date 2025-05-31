@@ -1,6 +1,7 @@
 import { PauseIcon, PlayIcon, RowsIcon, StopIcon } from "@phosphor-icons/react";
 import { clsx } from "clsx";
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 
 import { useQueryCategory, useQueryTracker } from "../../../hooks/query";
 import {
@@ -10,6 +11,7 @@ import {
 import styles from "./CurrentTracker.module.css";
 
 export function CurrentTracker() {
+  const { t } = useTranslation();
   const timeTracker = useTimeTracker();
 
   const currentTime = useTimeTrackerStore(
@@ -45,13 +47,13 @@ export function CurrentTracker() {
           {tracker.name}
           <span className={styles.category}>
             <RowsIcon />
-            {category?.name || "Uncategorized"}
+            {category?.name || t("page.trackers.uncategorized")}
           </span>
         </div>
         <span className={styles.description}>{tracker.description}</span>
       </div>
       <div className={clsx(styles.time__container)}>
-        {isPaused && <span className={styles.pausedText}>Paused</span>}
+        {isPaused && <span className={styles.pausedText}>{t("paused")}</span>}
         <span
           className={clsx({
             [styles.paused]: isPaused,

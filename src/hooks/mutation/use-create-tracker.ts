@@ -2,10 +2,10 @@ import { useMutation } from "@tanstack/react-query";
 
 import { QueryKeys } from "../../constants/query-keys.ts";
 import { TrackerService } from "../../services/tracker-service.ts";
-import type { CreateTrackerCategoryDto } from "../../types/tracker.ts";
+import type { CreateTrackerDto } from "../../types/tracker.ts";
 
 type UseCreateTrackerArgs = {
-  tracker: CreateTrackerCategoryDto;
+  tracker: CreateTrackerDto;
 };
 
 /**

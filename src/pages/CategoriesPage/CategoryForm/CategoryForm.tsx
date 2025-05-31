@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import z from "zod";
 
-import { Field, Input } from "../../components";
-import { useQueryCategories } from "../../hooks/query";
-import type { TrackerCategory } from "../../types/tracker.ts";
+import { Field, Input } from "../../../components";
+import { useQueryCategories } from "../../../hooks/query";
+import type { TrackerCategory } from "../../../types/tracker.ts";
 import styles from "./CategoryForm.module.css";
 
 export const CATEGORY_FORM_ID = "category-form";

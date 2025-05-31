@@ -8,8 +8,9 @@ import {
 import { clsx } from "clsx";
 import * as React from "react";
 import { useCallback } from "react";
+import { useNavigate } from "react-router";
 
-import { Button } from "../../../components";
+import { Button, confirm } from "../../../components";
 import { useDeleteTracker } from "../../../hooks/mutation";
 import { useQueryTrackerInstances } from "../../../hooks/query";
 import {
@@ -36,6 +37,7 @@ type TrackerProps = {
 };
 
 export function Tracker({ tracker, expanded, onToggle }: TrackerProps) {
+  const navigate = useNavigate();
   const timeTracker = useTimeTracker();
   const isActive = useTimeTrackerStore(
     (state) => state.instance?.trackerId === tracker.id,
@@ -65,12 +67,33 @@ export function Tracker({ tracker, expanded, onToggle }: TrackerProps) {
   const onDelete = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
-      if (isActive) {
-        await timeTracker.stopTracking();
+
+      try {
+        await confirm({
+          title: "Delete Tracker",
+          description: "Are you sure you want to delete this tracker?",
+          confirmButtonText: "Delete",
+          cancelButtonText: "Cancel",
+          confirmButtonVariant: "danger",
+        });
+        if (isActive) {
+          await timeTracker.stopTracking();
+        }
+        return deleteTracker.mutate(tracker);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (_) {
+        /* empty */
       }
-      return deleteTracker.mutate(tracker);
     },
     [deleteTracker, isActive, timeTracker, tracker],
+  );
+
+  const onEdit = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation();
+      navigate(`/trackers/${tracker.id}/edit`);
+    },
+    [navigate, tracker.id],
   );
 
   return (
@@ -87,7 +110,14 @@ export function Tracker({ tracker, expanded, onToggle }: TrackerProps) {
           onClick={onToggle}
         >
           {expanded ? <CaretDownIcon /> : <CaretRightIcon />}
-          <h3 className={styles.tracker__name}>{tracker.name}</h3>
+          <div className={styles.tracker__title}>
+            <h3 className={styles.tracker__name}>{tracker.name}</h3>
+            {tracker.description && (
+              <span className={styles.tracker__description}>
+                {tracker.description}
+              </span>
+            )}
+          </div>
           <span className={styles.tracker__time}>
             {durationMillsToString(
               instances.reduce(
@@ -114,7 +144,9 @@ export function Tracker({ tracker, expanded, onToggle }: TrackerProps) {
             {instances.length === 0 ? (
               <div className={styles.tracker__empty}>
                 No tracker data available yet. Start tracking to see your time.
-                <Button variant="primary">Start Tracking</Button>
+                <Button variant="primary" onClick={onStart}>
+                  Start Tracking
+                </Button>
               </div>
             ) : (
               <div className={styles.tracker__instances}>
@@ -140,7 +172,7 @@ export function Tracker({ tracker, expanded, onToggle }: TrackerProps) {
               </div>
             )}
             <footer className={styles.tracker__footer}>
-              <Button size="sm" variant="secondary">
+              <Button size="sm" variant="secondary" onClick={onEdit}>
                 Edit
               </Button>
               <Button size="sm" variant="danger" onClick={onDelete}>

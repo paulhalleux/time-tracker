@@ -3,6 +3,18 @@
   "cancel": "Cancel",
   "save": "Save",
   "page": {
+    "trackers": {
+      "title": "Tracker",
+      "description": "Manage your time tracking sessions.",
+      "create": {
+        "label": "New Tracker",
+        "description": "Create a new tracker to start tracking your time."
+      },
+      "edit": {
+        "label": "Edit Tracker",
+        "description": "Modify the details of the selected tracker."
+      }
+    },
     "dashboard": {
       "title": "Dashboard",
       "noCurrentTracking": "No current tracking session.",
@@ -26,6 +38,12 @@
       "name": {
         "required": "Category name is required.",
         "unique": "Category name is already in use."
+      }
+    },
+    "tracker": {
+      "name": {
+        "required": "Tracker name is required.",
+        "unique": "Tracker name is already in use."
       }
     }
   }

@@ -1,2 +1,2 @@
-export { CategoriesPage } from "./CategoriesPage/CategoriesPage.tsx";
+export { CategoriesPage } from "./CategoriesPage/CategoryPage/CategoriesPage.tsx";
 export { DashboardPage } from "./DashboardPage/DashboardPage.tsx";

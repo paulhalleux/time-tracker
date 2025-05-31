@@ -60,49 +60,71 @@ export function createTracker(): TimeTrackerApi {
     initialized = true;
   }
 
+  const startTracking = async (trackerId: string) => {
+    await stopTracking();
+
+    const instance = await TrackerInstanceService.create({
+      trackerId,
+    });
+
+    updateStore((state) => {
+      state.isPaused = false;
+      state.instance = instance;
+    });
+
+    setupInterval(trackerId);
+
+    queryClient.setQueryData<TrackerInstance[]>(
+      QueryKeys.TrackerInstances.ByTrackerId(trackerId),
+      (oldData) => {
+        const instances = oldData || [];
+        return [instance, ...instances];
+      },
+    );
+  };
+
+  const stopTracking = async () => {
+    updateStore((state) => {
+      if (!state.instance) {
+        return;
+      }
+
+      TrackerInstanceService.update(state.instance?.id, {
+        ...current(state.instance),
+        endTime: new Date(),
+      }).then((updated) => {
+        if (!updated) {
+          return;
+        }
+        queryClient.setQueryData<TrackerInstance[]>(
+          QueryKeys.TrackerInstances.ByTrackerId(updated.trackerId),
+          (oldData) => {
+            const instances = oldData || [];
+            return instances.map((i) => {
+              if (i.id === updated.id) {
+                return updated;
+              }
+              return i;
+            });
+          },
+        );
+      });
+
+      state.isPaused = false;
+      state.instance = null;
+      if (state.interval) {
+        clearInterval(state.interval);
+        state.interval = null;
+      }
+    });
+  };
+
   return {
     store,
     updateStore,
 
-    startTracking: async (trackerId) => {
-      const instance = await TrackerInstanceService.create({
-        trackerId,
-      });
-
-      updateStore((state) => {
-        state.isPaused = false;
-        state.instance = instance;
-      });
-
-      setupInterval(trackerId);
-
-      queryClient.setQueryData<TrackerInstance[]>(
-        QueryKeys.TrackerInstances.ByTrackerId(trackerId),
-        (oldData) => {
-          const instances = oldData || [];
-          return [instance, ...instances];
-        },
-      );
-    },
-    stopTracking: async () => {
-      updateStore((state) => {
-        if (!state.instance) {
-          return;
-        }
-
-        TrackerInstanceService.update(state.instance?.id, {
-          ...current(state.instance),
-          endTime: new Date(),
-        });
-
-        state.isPaused = false;
-        state.instance = null;
-        if (state.interval) {
-          clearInterval(state.interval);
-          state.interval = null;
-        }
-      });
-    },
+    startTracking,
+    stopTracking,
     pause: async () => {
       updateStore((state) => {
         state.isPaused = true;

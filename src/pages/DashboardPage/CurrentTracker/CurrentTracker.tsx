@@ -48,7 +48,7 @@ export function CurrentTracker() {
             {category?.name || "Uncategorized"}
           </span>
         </div>
-        <span>{tracker.description}</span>
+        <span className={styles.description}>{tracker.description}</span>
       </div>
       <div className={clsx(styles.time__container)}>
         {isPaused && <span className={styles.pausedText}>Paused</span>}

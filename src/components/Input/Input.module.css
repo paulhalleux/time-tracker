@@ -1,7 +1,7 @@
 .input {
   height: 32px;
-  padding: 0 8px;
-  font-size: var(--f-size-base);
+  padding: 0 10px;
+  font-size: var(--f-size-small);
   color: var(--c-text-base);
   background: var(--c-background-secondary);
   border: 1px solid var(--c-border-base);

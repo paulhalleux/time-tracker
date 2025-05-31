@@ -41,3 +41,11 @@
 html, body, #root {
   min-height: 100vh;
 }
+
+#root {
+  color: var(--c-text-base);
+  background: var(--c-background-base);
+
+  font-family: var(--f-family-base), sans-serif;
+  font-size: var(--f-size-base);
+}

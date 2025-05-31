@@ -9,7 +9,7 @@ import {
   CATEGORY_FORM_ID,
   CategoryForm,
   type CategoryFormData,
-} from "./CategoryForm.tsx";
+} from "./CategoryForm/CategoryForm.tsx";
 
 export function EditCategoryModal() {
   const { t } = useTranslation();

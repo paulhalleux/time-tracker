@@ -8,8 +8,22 @@
   margin: 0 -8px;
 }
 
-.tracker__name {
-  flex: 1;
+.tracker--active {
+  border-color: var(--c-border-primary);
+  outline: 2px solid oklab(from var(--c-background-primary) l a b / 10%) !important;
+}
+
+.tracker__title {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tracker__description {
+  color: var(--c-text-secondary);
+  font-size: var(--f-size-small);
+  margin-right: auto;
 }
 
 .tracker__time {
